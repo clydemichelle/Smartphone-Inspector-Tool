@@ -1,0 +1,200 @@
+<!-- <style>
+    .hello-msg{
+        font-size: 18px;
+        margin-right: 20px;
+    }
+</style>
+<h5> Home </h5>
+
+<nav class= "navbar navbar-expanded-lg navbar-dark bg-dark">
+
+    <span class ="hello-msg">Hello, {{request.user}}</span>
+    <span class = "hello-msg"><a href="{%url 'logout'%}">Logout</a></span>
+
+</nav> -->
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'results/css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'results/css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'results/css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'results/css/custom.css' %}">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Inspector Tool</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;
+                &emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#about-page">About</a>
+            <a class="nav-item nav-link" href="#how-it-works">How It Works</a>
+            <a class="nav-item nav-link" href="#contact-us">Contact</a>
+          </div>
+        </div>
+        <span >
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{%url 'register'%}">SignUp</a></button>
+        </span>
+        &emsp13;
+        <span class = "hello-msg">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{%url 'login'%}">Login</a></button>
+        </span>
+      </nav>
+
+    
+    <!-- Start About Page  -->
+    <div class="about-box-main" id="about-page">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6">
+                  <h2 class="noo-sh-title">We are <span>ThewayShop</span></h2>
+                  <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+                      voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
+                      sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
+                      Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </p>
+              </div>
+              <div class="col-lg-6">
+                  <div class="banner-frame"> <img class="img-thumbnail img-fluid" src="{%static 'results/media/phones.png' %}" alt="" />
+                  </div>
+              </div>
+          </div>
+          <div class="row my-5" id="how-it-works">
+              <div class="col-sm-6 col-lg-4">
+                  <div class="service-block-inner">
+                      <h3>1.Search</h3>
+                      <p>Ensure that you are registered and logged in. Then enter a valid Jumia smartphone URL </p>
+                  </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                  <div class="service-block-inner">
+                      <h3>2. Processing</h3>
+                      <p>Be patient as the magic happens behind the closed walls </p>
+                  </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                  <div class="service-block-inner">
+                      <h3>3. Results </h3>
+                      <p> Be able to view graphs and tables from the analysis </p>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    <!-- End About Page  -->
+
+          <!-- Start Footer  -->
+    <footer>
+      <div class="footer-main">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-4 col-md-12 col-sm-12">
+                      <div class="footer-widget">
+                          <h4>About Inspector Tool</h4>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                              </p>
+                          <ul>
+                              <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                              <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                              <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                              <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                              <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                              <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                              <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12 col-sm-12">
+                      <div class="footer-link">
+                          <h4>Information</h4>
+                          <ul>
+                              <li><a href="#">About Us</a></li>
+                              <li><a href="#">Customer Service</a></li>
+                              <li><a href="#">Our Sitemap</a></li>
+                              <li><a href="#">Terms &amp; Conditions</a></li>
+                              <li><a href="#">Privacy Policy</a></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12 col-sm-12">
+                      <div class="footer-link-contact" id="contact-us">
+                          <h4>Contact Us</h4>
+                          <ul>
+                              <li>
+                                  <p><i class="fas fa-map-marker-alt"></i>Address: Rhapta Road <br>Westlands<br> KE </p>
+                              </li>
+                              <li>
+                                  <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+25478683210</a></p>
+                              </li>
+                              <li>
+                                  <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+  <!-- End Footer  -->
+
+  <!-- Start copyright  -->
+  <div class="footer-copyright">
+      <p class="footer-company">All Rights Reserved. &copy; 2022 <a href="#">Smartphone Inspector</a> Design By :
+          <a href="https://html.design/">Clyde Michelle</a></p>
+  </div>
+  <!-- End copyright  -->
+  <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+        <!-- ALL JS FILES -->
+        <script src="{%static 'results/js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{%static 'results/js/popper.min.js' %}"></script>
+        <script src="{%static 'results/js/bootstrap.min.js' %}"></script>
+        <!-- ALL PLUGINS -->
+        <script src="{%static 'results/js/jquery.superslides.min.js' %}"></script>
+        <script src="{%static 'results/js/bootstrap-select.js' %}"></script>
+        <script src="{%static 'results/js/inewsticker.js' %}"></script>
+        <script src="{%static 'results/js/bootsnav.js' %}"></script>
+        <script src="{%static 'results/js/images-loded.min.js' %}"></script>
+        <script src="{%static 'results/js/isotope.min.js' %}"></script>
+        <script src="{%static 'results/js/owl.carousel.min.js' %}"></script>
+        <script src="{%static 'results/js/baguetteBox.min.js' %}"></script>
+        <script src="{%static 'results/js/form-validator.min.js' %}"></script>
+        <script src="{%static 'results/js/contact-form-script.js' %}"></script>
+        <script src="{%static 'results/js/custom.js' %}"></script>
+  </body>
+</html>
+
+

@@ -1,0 +1,262 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function validateForm() {
+        let x = document.forms["myForm"]["search_url"].value;
+  
+        if (x == "") {
+          alert("Search url must be filled out");
+          x.focus();
+          return false;
+        }
+      }
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'results/css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'results/css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'results/css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'results/css/custom.css' %}">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Inspector Tool</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;
+              &emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;Home </a>
+          <a class="nav-item nav-link" href="#">About</a>
+          <a class="nav-item nav-link" href="#">How It Works</a>
+          <a class=" nav-item dropdown nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Results <span class="sr-only">(current)</span>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Graph Representation</a>
+              <a class="dropdown-item" href="#">Tabular Representation</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Full Report</a>
+            </div>
+          </a>
+          <a class="nav-item nav-link" href="#">Contact</a>
+        </div>
+      </div>
+      <span class="nav-item" style="color: aliceblue;">
+        Hello, {{request.user}}
+      </span>
+      &emsp13;
+      <span class = "hello-msg">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{%url 'logout'%}">Logout</a></button>
+      </span>
+    </nav>
+    <br>
+    <br>
+    {% if exist == True %}
+        <div class="card " style=" margin-left: 40px; margin-right: 40px; ">
+            <div class="card-header">
+            Oops!
+            </div>
+            <div class="card-body">
+            <h5 class="card-title">{{oops}}</h5>
+            <p class="card-text">It seems you did not enter a valid Jumia Smartphone URL. Please Try Again</p>
+            <a href="{%url 'index'%}" class="btn btn-primary">Try Again</a>
+            </div>
+            <div class="card-footer text-muted">
+            Be a Smart Smartphone Inspector
+            </div>
+      </div>
+    {%elif num_of_reviews == 0%}
+        <div class="card " style=" margin-left: 40px; margin-right: 40px; ">
+            <div class="card-header">
+            Sorry 
+            </div>
+            <div class="card-body">
+            <h5 class="card-title">Zero Reviews Found</h5>
+            <p class="card-text">This smartphone has no reviews yet.Please Try Another</p>
+            <a href="{%url 'index'%}" class="btn btn-primary">Search Again</a>
+            </div>
+            <div class="card-footer text-muted">
+            Be a Smart Smartphone Inspector
+            </div>
+          </div>
+    {% else%}
+        <div class="row">
+        <div class="col-md-6">
+            <img src="{{ picture }}" alt="Card image cap" style="height: 350px;">
+            <div style="float :right">
+              <h5 class="heading font-weight-bold">Smartphone Name : </h5> <p>{{phone_name}}</p>
+              <br>
+              <h5 class="heading font-weight-bold">Smartphone Price:</h5><p>Kshs. {{price}} </p>  
+              <h5 class="heading font-weight-bold">Extracted number of reviews :</h5><p>{{num_of_reviews}} </p> 
+              
+              
+            </div>
+        </div>
+        <div class="col-md-6">
+            {% load static %}
+            <img src="data:image/png;base64, {{image|safe}}" alt="My image">
+        </div> 
+
+        </div>
+
+        <div class="container">
+          <h2><u>Topic-Reviews-Sentiments</u></h2><br> 
+          
+          <i class="fas fa-search"></i><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for topic.." title="Type in a topic">           
+          <br>
+          
+          <table class="table table-light table-striped" id="myTable">
+            <thead>
+              <tr>
+                <th>Dominant_Topic</th>
+                <th>Review</th>
+                <th>Sentiment</th>
+              </tr>
+            </thead>
+            <tbody>
+            <!-- jinja2 Technique -->
+            {% if d %}  
+            {% for i in d %}
+              <tr>
+                <td>{{i.DominantTopic}}</td>
+                <td>{{i.reviewText}}</td>
+                <td>{{i.sentiment}}</td>
+              </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+          </table>
+        </div>
+
+    {% endif%}
+          <!-- Start Footer  -->
+          <footer>
+            <div class="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-widget">
+                                <h4>About Inspector Tool</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-link">
+                                <h4>Information</h4>
+                                <ul>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Customer Service</a></li>
+                                    <li><a href="#">Our Sitemap</a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-link-contact" id="contact-us">
+                                <h4>Contact Us</h4>
+                                <ul>
+                                    <li>
+                                        <p><i class="fas fa-map-marker-alt"></i>Address: Rhapta Road <br>Westlands<br> KE </p>
+                                    </li>
+                                    <li>
+                                        <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+25478683210</a></p>
+                                    </li>
+                                    <li>
+                                        <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer  -->
+      
+        <!-- Start copyright  -->
+        <div class="footer-copyright">
+            <p class="footer-company">All Rights Reserved. &copy; 2022 <a href="#">Smartphone Inspector</a> Design By :
+                <a href="https://html.design/">Clyde Michelle</a></p>
+        </div>
+        <!-- End copyright  -->
+        <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+          <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"
+          ></script>
+          <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+          ></script>
+          <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+          ></script>
+      
+              <!-- ALL JS FILES -->
+              <script src="{%static 'results/js/jquery-3.2.1.min.js' %}"></script>
+              <script src="{%static 'results/js/popper.min.js' %}"></script>
+              <script src="{%static 'results/js/bootstrap.min.js' %}"></script>
+              <!-- ALL PLUGINS -->
+              <script src="{%static 'results/js/jquery.superslides.min.js' %}"></script>
+              <script src="{%static 'results/js/bootstrap-select.js' %}"></script>
+              <script src="{%static 'results/js/inewsticker.js' %}"></script>
+              <script src="{%static 'results/js/bootsnav.js' %}"></script>
+              <script src="{%static 'results/js/images-loded.min.js' %}"></script>
+              <script src="{%static 'results/js/isotope.min.js' %}"></script>
+              <script src="{%static 'results/js/owl.carousel.min.js' %}"></script>
+              <script src="{%static 'results/js/baguetteBox.min.js' %}"></script>
+              <script src="{%static 'results/js/form-validator.min.js' %}"></script>
+              <script src="{%static 'results/js/contact-form-script.js' %}"></script>
+              <script src="{%static 'results/js/custom.js' %}"></script>
+    
+    <script>
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }       
+        }
+      }
+      </script>
