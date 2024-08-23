@@ -1,4 +1,4 @@
-# Smartphone-Inspector-Tool
+# SmartPick Insight Tool
 
-Smart Tool for e-commerce buyers.
+Smart tool for e-commerce buyers where you get to know the features of a smartphone before buying it, to make informed decisions and better financial decision.
 
